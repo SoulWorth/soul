@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiest Birthday Batakh! 🦆</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:w极7&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Playfair Display', serif;
+            background: linear-gradient(rgba(255, 192, 203, 0.8), rgba(255, 182, 193, 0.9)), 
+                        url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&ixid=M3wxMj极fDB8MHxzZWFyY2h8Mnx8bGlicmFyeXxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #8a1c61;
+            min-height: 100vh;
+         overflow-x: hidden;
+        }
+        
+        .dancing-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .birthday-title {
+            font-size: 4rem;
+            text-shadow: 2 2px 4px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #ff6b6b, #c71585);
+           -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #ff6b6b, 0 0 20px #ff6b6b; }
+            to { text-shadow: 0 0 10 #fff, 0 0 20px #fff, 0 0 30px #6b6b, 0 0 40px #ff6b6b; }
+        }
+        
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50%;
+            animation: float 15s ease-in infinite;
+            z-index: 1;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0.7; }
+            80% { opacity: 0.9; }
+            100% { transform: translateY(-100px) translateX(30px); opacity: 0; }
+        }
+        
+        .flower {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.7;
+            animation: sway 5s ease-in-out infinite;
+       }
+        
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        
+        .message-box {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(206, 120, 173, 0.3);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+        
+        .pink-btn {
+            background: linear-gradient(45deg, #ff6b6b, #c71585);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(199, 21, 133, 0.4);
+        }
+        
+        .pink-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(199, 21, 133极 0.6);
+        }
+        
+        .special-btn {
+            background: linear-gradient(45deg, #ff8e8e, #d94a9d);
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 105, 180, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 20px rgba(255, 105, 180, 0.5); }
+            50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 30px rgba(255, 105, 180, 0.7); }
+        }
+        
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: rotate(3deg);
+            transition: all 0.3s ease;
+        }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+        
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            z-index: 1000; /* fixed z-index */
+            max-width: 80%;
+            text-align: center;
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+        }
+        
+        .heart {
+            color: #ff6b6b;
+            animation: heartbeat 1.2s infinite;
+        }
+        
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .duck-float {
+            animation: duckFloat 3s ease-in-out infinite;
+        }
+        
+        @keyframes duckFloat {
+            0%, 100% { transform: translateY(0) rotate(3deg); }
+            50% { transform: translateY(-10px) rotate(-3deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <!-- Balloons -->
+    <div id="balloons-container"></div>
+    
+    <!-- Flowers -->
+    <div class="flower" style="top: 10%; left: 5%;">🌸</div>
+    <div class="flower" style="top: 15%; right: 7%;">🌹</div>
+    <div class="flower" style="bottom: 20%; left: 10%;">🌺</div>
+    <div class="flower" style="bottom: 15%; right: 5%;">💮</div>
+    
+    <!-- Overlay for popups -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Main Content -->
+    <main class="container mx-auto max-w-4xl flex极col items-center z-10">
+        <!-- Title -->
+
+        <h1 class="birthday-title dancing-font text-center mt-6 mb-2">
+            Happiest Birthdayyy Batakh 🦆
+        </h1>
+        
+        <!-- Duck Icon -->
+        <div class="text-5xl mb-8 duck-float">🦆</div>
+  
+<!-- Photo Upload -->
+        <div class="message-box w-full mb-8 text-center">
+            <h2 class="text-2xl font-bold mb-4">BDAY QUEEN</h2>
+            <input type="file" id="photo-upload" accept="image/*" class="hidden">
+            <label for="photo-upload" class="pink-btn inline-block cursor-pointer">
+                <i class="fas fa-upload mr-2"></i>Upload Photo
+            </label>
+            <div id="photo-preview" class="mt-4 flex flex-wrap justify-center gap-4"></div>
+        </div>
+
+
+        <!-- Messages Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full mb-8">
+            <!-- Message Buttons -->
+            <div class="message-box">
+                <h2 class="text-2xl font-bold mb-4">Special Messages</h2>
+                <div class="grid grid-cols-1 gap-3">
+                    <button class="pink-btn" onclick="showPopup('popup1')">Why You're bestesstttt</button>
+                    <button class="pink-btn special-btn" onclick="showPopup('popup2')">My Favorite Memories</button>
+                          <button class="pink-btn" onclick="showPopup('popup4')">Special wishhh</button>
+                </div>
+            </div>
+            
+            <!-- Custom Message -->
+            <div class="message-box">
+                <h2 class="text-2xl font-bold mb-4">Personalize Your Message</h2>
+                <textarea id="custom-message" placeholder="Write your own special message here..." class="w-full h-32 p-3 border border-pink-300 rounded-lg mb-3"></textarea>
+                <button class="pink-btn w-full" onclick="showCustomMessage()">Show Messagebutton>
+            </div>
+        </div>
+        
+        <!-- Heartfelt Message -->
+
+
+
+
+
+
+
+        <div class="message-box w-full text-center mb-8">
+            <h2 class="text-2xl font-bold mb-4">To My Dearest Best Friend</h2>
+            <p class="text-lg italic mb-3">
+                SO NOW MY FAVORITESTTTT TANISHA IS 16!! Ab tum badi hogyi ho, aasa to sb hi khege but nhi tu mare samne be like a baccha
+                cuz I like ur inncoent side. I actually dont want to accept the fact ki tu ab bdi hogyi h. Ur mechure side is way different
+                which is super dooper perfect. Tu na sbk samne vaisi rha kr but mare pls mare to nhi plss🥹. Lets move ahead
+                kya hi rha ye saal kitna kuch kiya door rhkr. Saari baate ek dusre ko btana lad bhi lena usi me kbhi ye kr kbhi vo kr
+                aur jb krne ki aaye to tu kuch bhi mt kr. bs ha ha ha likhti rh btkh khi ki😤KBHIII TOOO BAAAT MANNAAAA KR MERIIII!!!!
+                AUR MUJHE GLT SMJHNA CHORH DE 
+                
+            <p class="text-lg mb-3">
+               Chlo bhot hui bkwas ab aage bdhte hai. this year was the transformation year for you. from a cry baby to a baddie
+               jisKo ab kisi se frk nhi padta and is very sensible mechure and confident. FUTURE FORENSIC SCIENTIST!! Ab to tare
+               aim bhi h. tune na sch btau bhhot bhot bhot jyada improve kiya hai Tanisha. Tune ab kuch change kiya built a new 
+               Tanisha. and damnn bhai teri personality tare looks tera sb kuch sb kuch change hogya h and looking this closely i can blindly 
+               say ki koi bhi nya insaan tujhe dekh kr tera past to guess hi nhi kr skta at any cost. I m very happy to see someone getting improved in 
+               front of my eyes. Its a proud moment for me as  well and I m very happy with thissssss. And i hope this yr as well tu aur btr version of urself
+               and i will support u throughout thiss. Keep improving sweetestt.
+
+            <p class="text-lg">
+               So teri baat ho aur teri sundarta ki baat na aaye assa apossible h kya? Dekho u r so sundar ki mai google se synonyms yaad krne lga hu ab 
+               itne saare words k jo tujhe describe kre kyuki har baar mujhse same text nhi likha ja rha h. Jb bhi tujhe dekhta hu na bhai sahab chats yaad aajati h.
+               kitna frk h don0 mee. Tujhse jb milta hu tujhe jab dekhta hu na kabhi mai to koi f=kami find out tk nhi kr paya hu. Literally u the slayy queen
+               Koi kami hi nhi h tujhme to. I tried poiunting out but i failed honestly. U r one of the Rarest and cutest specie available. Whenever I 
+               go to the temple honestly I pray to god thanking for u as my Best and closest friend. I NEVER WANNA LOOSE U. STAY HAPPY AS ALWAYS AND ENJOY UR DAY!!!!!
+                         </p>
+            <div class="text-3xl mt-4">
+                <span class="heart">♥</span> Happy Birthday! <span class="heart">♥</span>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="text-center py-6 text-lg">
+        Made with <span class="heart">♥</span> for Tanisha's Special Day
+    </footer>
+    
+    <!-- Popups -->  
+     <!-- Popup Messages -->
+<div class="popup" id="popup1">
+    <h2 class="text-2xl font-bold mb-4">Why You're Amazing</h2>
+    <p class="text-lg mb-4">
+        Bhai ab kya hi bolu, kya kami h tujhme?? From the tip of ur hair till  the last nail of ur tow, u r soo perfect,
+                U literally do ur best in evrything which u try and  i m so much impressed by ur transformation so much impressed tht
+                i cant even explain. u r the one who literally pulled out urself from a bog of marsh. I just trust one thing 
+                "NA TANISHA JAISI KOI HAI NA KBHI THI AUR NA KABHI HOGI. TU ONE AND ONLY PIECE H AND KOI TUJHE REPLACE NHI KR SKTA"
+    </p>
+    <button class="pink-btn" onclick="closePopup()">Close</button>
+</div>
+
+    <div class="popup" id="popup2">
+        <h2 class="text-2xl font-bold mb-4">My Favorite Memories</h2>
+        <p class="text-lg mb-4">
+           Never matters hamne itne time me kya kya kiya h i still remember and the first time i saw u. Sitting at backseat of bus 
+                looking at a girl with open hairs and sweet touch of sunset ray falling on her face from bus's window. Kya hot aur sexy
+                lag rhi thi tu, dekh kr hi psnd aagyi thi. Cahe kuch yaad rhe ya na rhe cahe brain wash hi kyu na kr diya jaye, i will Never
+                forget this memory THE DAY I SAW U!. I love this initial and i will always respect it. 
+        </p>
+        <button class="pink-btn" onclick="closePopup()">Close</button>
+    </div>
+   
+    
+    <div class="popup" id="popup4">
+        <h2 class="text-2xl font-bold mb-4">Birthday Wishes</h2>
+        <p class="text-lg mb-4">
+            Its ur bday and idk how to thankyou after all. tune mare itna kuch kiya h meri har chiz me madad ki h bs jb sbse jyada
+                jroort pdti h tb ofline hojati h 😑. U r the person whome thanking feels a very small thing. Ab tu hi bata kha kha thankyou
+                likh pauga, my small efforts even seems useless. Tu hai hi itni aachi. Ab dekho tum na hoti to mujhe kbhi bhi itna aacha whatsapp
+                experience nhi milta. U have played a major role in improvement of my life. Never matters wht acadmical downfall I hhave reached
+                I m improved and improving day by day staying in touch with u. I M VRY THANKFUL HAVING TANISHA AS MY BEST FRIEND!
+        </p>
+        <button class="pink-btn" onclick="closePopup()">Close</button>
+    </div>
+    
+    <div class="popup" id="custom-popup">
+        <h2 class="text-2xl font-bold mb-4">Your Special Message</h2>
+        <p class="text-lg mb-4" id="custom-message-text"></p>
+        <button class="pink-btn" onclick="closePopup()">Close</button>
+    </div>
+
+    <script>
+        // Create balloons
+        function createBalloons() {
+            const balloonsContainer = document.getElementById('balloons-container');
+            const colors = ['#ff6b6b', '#c71585', '#ff1493', '#ff69b4', '#db7093'];
+            
+            for (let i = 0; i < 15; i++) {
+                const balloon = document.createElement('div');
+                balloon.className = 'balloon';
+                balloon.style.left = Math.random() * 100 + 'vw';
+                balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                balloon.style.animationDuration = (15 + Math.random() * 10) + 's';
+                balloon.style.animationDelay = Math.random() * 5 + 's';
+                
+                balloonsContainer.appendChild(balloon);
+            }
+        }
+        
+        // Show popup
+        function showPopup(popupId) {
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById(popupId).style.display = 'block';
+        }
+        
+        // Show custom message
+        function showCustom极sage() {
+            const message = document.getElementById('custom-message').value;
+            if (message.trim() !== '') {
+                document.getElementById('custom-message-text').textContent = message;
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('custom-popup').style.display = 'block';
+            } else {
+                alert('Please write a message first!');
+            }
+        }
+        
+        // Close popup
+        function closePopup() {
+            document.querySelectorAll('.popup').forEach(popup => {
+                popup.style.display = 'none';
+            });
+            document.getElementById('overlay').style.display = 'none';
+        }
+        
+        // Handle photo upload
+        document.getElementById('photo-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const photoPreview = document.getElementById('photo-preview');
+                    const polaroid = document.createElement('div');
+                    polaroid.className = 'polaroid';
+                    
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.className = 'w-40 h-40 object-cover';
+                    
+                    polaroid.appendChild(img);
+                    photoPreview.appendChild(polaroid);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Close popup when clicking outside
+        document.getElementById('overlay').addEventListener('click', closePopup);
+        
+        // Initialize
+        window.onload = function() {
+            createBalloons();
+        };
+    </script>
+</body>
+</html>
